@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/hayashi/.nvm/versions/node/v20.20.1/bin/node",
+      "runtimeArgs": ["/Users/hayashi/Downloads/星野舜/portfolio-app/node_modules/.bin/vite", "--host", "0.0.0.0"],
+      "port": 5173
+    }
+  ]
+}

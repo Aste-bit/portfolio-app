@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install framer-motion lucide-react)",
+      "Bash(npm run build)",
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)",
+      "Bash(bash)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(lsof -i :5173)",
+      "Bash(kill 6915)",
+      "Bash(curl -s http://127.0.0.1:5173/)",
+      "Bash(kill 7582)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(chmod +x /Users/hayashi/Downloads/星野舜/portfolio-app/start-dev.sh)",
+      "Bash(export NVM_DIR=\"$HOME/.nvm\")",
+      "Bash(. \"$NVM_DIR/nvm.sh\")",
+      "Bash(nvm use 20)",
+      "Bash(npm run build --prefix /Users/hayashi/Downloads/星野舜/portfolio-app)",
+      "Bash(gh auth status)",
+      "Bash(git --version)",
+      "Bash(brew list gh)",
+      "Bash(brew install gh)",
+      "Bash(git init)",
+      "Bash(git branch -M main)",
+      "Bash(git add -A)"
+    ]
+  }
+}
