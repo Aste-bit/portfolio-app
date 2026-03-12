@@ -6,6 +6,7 @@ import {
   Bell,
   RefreshCw,
   Search,
+  Wifi,
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./FadeIn";
 import { content } from "../data/content";
@@ -17,6 +18,7 @@ const iconMap = {
   Bell,
   RefreshCw,
   Search,
+  Wifi,
 };
 
 export function Capabilities({ isTech }) {

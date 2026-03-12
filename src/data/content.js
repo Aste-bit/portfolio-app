@@ -123,6 +123,108 @@ export const content = {
         ],
       },
     },
+    {
+      number: "03",
+      title: "Todoダッシュボード",
+      service: "",
+      screenshot: "/screenshots/project3.png",
+      easy: {
+        description:
+          "チームの日々のタスクをスマホ・PCからサクサク管理できるアプリです。\n\nスプレッドシートでタスク管理をしていたのですが、スマホから見づらく「今日何をやるか」がすぐにわからない状態でした。そこでスプレッドシートと連動する専用アプリを作り、6つのタブ（今日/タスク一覧/アイデア/知識リンク/構成/履歴）で情報を整理しました。\n\nスワイプで完了・削除ができるスマホ最適化UIで、タッチドラッグで並び替えも可能です。毎日0時にマスタータスクから自動投入されるので、毎朝のタスク設定も不要。完了したタスクは取り消し線で一日中残り、0時に自動で履歴に移動します。",
+        tags: [
+          "6タブ構成",
+          "スワイプ操作",
+          "自動リセット",
+          "完了履歴",
+          "スマホ最適化",
+          "スプシ連動",
+        ],
+      },
+      tech: {
+        description:
+          "GAS Web AppでSPA（シングルページアプリ）を構築。スプレッドシート4シートをバックエンドDBとして活用し、google.script.runでCRUD操作を実現しています。\n\n階層表示はhideStackベースの多階層開閉で、全角スペースインデントによるマスター管理とcollapsedRowsによる行番号管理を組み合わせています。親タスク判定は次タスクのindent比較で行い、フレームワークなしのバニラHTML+JSでSPA動作を実装しました。\n\nGAS onEditトリガーで完了時刻・作業中時刻を自動記録。setupDailyTriggerで毎日0時にautoResetAndPopulateを実行し、マスターからの自動投入と完了タスクの履歴移動を行います。md同期機能（TASKS.md/IDEAS.md/KNOWLEDGE.md）でClaude Codeとの連携も実現しています。",
+        tags: [
+          "GAS Web App (doGet)",
+          "HTML SPA (6タブ)",
+          "google.script.run CRUD",
+          "onEdit トリガー",
+          "hideStack多階層開閉",
+          "setupDailyTrigger",
+          "md同期 (Claude連携)",
+          "タッチドラッグ並替",
+        ],
+        stack:
+          "GAS Web App · Google Sheets (4シート) · GAS onEdit · バニラ HTML/CSS/JS SPA",
+        decisions: [
+          {
+            title: "フレームワーク不使用",
+            detail:
+              "GAS Web App内でのReact/Vue導入は複雑化するため、バニラHTML+JSでSPA実装。軽量で読み込み速度を重視。",
+          },
+          {
+            title: "階層管理",
+            detail:
+              "全角スペースインデントでマスター管理、hideStackで開閉制御。シンプルだが柔軟な階層表現。",
+          },
+          {
+            title: "完了タスクの日中残留",
+            detail:
+              "取り消し線表示で「今日やったこと」を可視化。0時バッチで履歴移動し翌日はクリーンな状態に。",
+          },
+        ],
+      },
+    },
+    {
+      number: "04",
+      title: "京都旅行しおりアプリ",
+      service: "",
+      screenshot: "/screenshots/project4.png",
+      easy: {
+        description:
+          "社内グループの京都旅行で使う、スマホ向けの旅のしおりアプリです。\n\nスケジュール・地図・費用・天気を1つのアプリにまとめ、スマホで開くだけで旅行の全情報がわかるようにしました。オフラインでも使えるPWA対応で、電波が弱い場所でも安心です。\n\nタイムライン形式で3日間のスケジュールを表示し、各スポットにはGoogleマップのリンク付き。「NOW」ハイライトで今いるべき場所がすぐわかります。旅行当日にはInstagram Stories風のストーリーモードが解禁されるサプライズ演出も入れました。",
+        tags: [
+          "タイムライン表示",
+          "オフライン対応",
+          "天気予報",
+          "費用管理",
+          "ストーリーモード",
+          "ダークモード",
+        ],
+      },
+      tech: {
+        description:
+          "フレームワークなし（ES5バニラJS）で軽量SPAを構築。Service Workerでオフラインキャッシュを実現し、GitHub Pagesで無料デプロイしています。\n\nOpen-Meteo APIでリアルタイム天気予報を取得し、localStorageでユーザーデータ（写真・レビュー・ハイライト）をクライアントサイドに永続化。STORY_UNLOCK = 1773640800000（2026-03-16 15:00 JST）でタイムスタンプベースの機能ロック/解禁を制御しています。\n\nES5準拠（var, function式）で幅広いブラウザ互換性を確保。CDN依存なしでオフライン完全対応を実現しました。",
+        tags: [
+          "バニラ JS (ES5)",
+          "Service Worker (PWA)",
+          "Open-Meteo API",
+          "localStorage永続化",
+          "GitHub Pages",
+          "タイムスタンプ機能制御",
+          "NOWハイライト",
+          "ダークモード",
+        ],
+        stack:
+          "HTML/CSS/JavaScript (ES5) · Open-Meteo API · localStorage · Service Worker · GitHub Pages",
+        decisions: [
+          {
+            title: "ES5準拠",
+            detail:
+              "var, function式を使用。幅広いブラウザ互換性を確保しつつ、CDN依存なしでオフライン完全対応。",
+          },
+          {
+            title: "機能ロック/解禁",
+            detail:
+              "STORY_UNLOCKタイムスタンプで旅行当日までストーリーモード等をロック。当日のサプライズ演出。",
+          },
+          {
+            title: "フレームワーク不使用",
+            detail:
+              "CDN依存をゼロにしてService Workerによるオフライン完全対応を実現。軽量で高速表示。",
+          },
+        ],
+      },
+    },
   ],
 
   capabilities: {
@@ -204,6 +306,18 @@ export const content = {
             "正規表現+数値比較。外部API課金ゼロ。AI判定移行設計済み",
         },
       },
+      {
+        icon: "Wifi",
+        easy: {
+          title: "オフライン対応アプリ",
+          description: "電波がなくても使えるスマホアプリを作れる",
+        },
+        tech: {
+          title: "PWA (Service Worker)",
+          description:
+            "Service Worker + localStorage。CDN依存なしでオフライン完全対応",
+        },
+      },
     ],
     extraText: {
       easy: "この他にも、管理画面全般・分析ダッシュボード・Slack/Discord連携・外部SaaS連携など、同じ構成で幅広く対応できます。",
@@ -215,7 +329,7 @@ export const content = {
     sectionTitle: "つくりかた",
     easy: {
       description:
-        "コードは一切書きません。\n\n業務の課題を丁寧にヒアリングして、最適な仕組みを設計するところに集中し、プログラミングはAI（Claude Code）に任せています。「業務をよく理解し、設計に集中することで良いシステムは作れる」というのが、2つのプロジェクトを通じて実感していることです。",
+        "コードは一切書きません。\n\n業務の課題を丁寧にヒアリングして、最適な仕組みを設計するところに集中し、プログラミングはAI（Claude Code）に任せています。「業務をよく理解し、設計に集中することで良いシステムは作れる」というのが、これまでのプロジェクトを通じて実感していることです。",
     },
     tech: {
       description:
