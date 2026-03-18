@@ -2,10 +2,10 @@ export const content = {
   intro: {
     name: "星野 舜",
     easy: {
-      body: "Googleスプレッドシートを軸にした業務管理システムを作っています。\n\n普段使っているスプレッドシートをそのまま活かしながら、\nチームが見やすく使いやすいアプリに仕立てるのが得意です。\nAI駆動で、設計から開発まで一人で対応しています。",
+      body: "業務管理システムをAI駆動で設計・構築しています。\n\nGoogleスプレッドシートを活かしたアプリから、\nデータベース（Supabase）を使った本格的なシステムまで対応。\nチームが見やすく使いやすいアプリに仕立てるのが得意です。\n設計から開発まで一人で対応しています。",
     },
     tech: {
-      body: "Google Sheets APIとGASを基盤にした業務管理システムを設計・構築しています。\n\nClaudeチャットで要件定義・アーキテクチャ設計を行い、\nClaude Codeに設計書を渡して実装するAI駆動開発スタイル。\nNext.js + Vercel構成とGAS Web App構成の2パターンで実績があります。",
+      body: "Google Sheets API・GAS・Supabaseを基盤にした業務管理システムを設計・構築しています。\n\nClaudeチャットで要件定義・アーキテクチャ設計を行い、\nClaude Codeに設計書を渡して実装するAI駆動開発スタイル。\nNext.js + Vercel構成、GAS Web App構成、Supabase + Vercel構成の3パターンで実績があります。",
     },
   },
 
@@ -17,32 +17,32 @@ export const content = {
       screenshot: "/screenshots/project1.png",
       easy: {
         description:
-          "ToC向けオンラインスクールの顧客対応を管理するために作ったシステムです。\n\nもともとは21項目あるスプレッドシートとDiscordで運用していたのですが、対応状況が見えづらく、誰がどこまで進めたかわからない状態でした。そこで項目を9つまで厳選し、ステータスを見るだけで次にやることがわかる設計にして、専用のウェブアプリを作りました。\n\nセルをクリックするだけで編集でき、変更は即座にスプレッドシートに反映されます。「完了」にすると自動で完了シートに移動し、種別を変えると正しいシートに移動する自動化も入っています。現在7人のチームで日常的に使っています。",
+          "ToC向けオンラインスクールの顧客対応を管理するために作ったシステムです。\n\nもともとは21項目あるスプレッドシートとDiscordで運用していたのですが、対応状況が見えづらく、誰がどこまで進めたかわからない状態でした。そこで項目を厳選し、ステータスを見るだけで次にやることがわかる設計にして、専用のウェブアプリを作りました。\n\nリリース後もチームの要望を反映し続け、10回のアップデートを経て、複数種別対応・行削除・赤伝期日の自動計算・ソート機能など16列で管理する本格的なシステムに成長しました。セルをクリックするだけで編集でき、変更は即座にスプレッドシートに反映されます。現在7人のチームで日常的に使っています。",
         tags: [
+          "16列管理",
           "5段階ステータス",
-          "3シート + 統合ビュー",
+          "Phase 10まで継続改善",
           "クリックで即編集",
           "自動シート移動",
           "スマホ対応",
-          "Googleログイン",
         ],
       },
       tech: {
         description:
-          'ToC向けオンラインスクールの顧客対応（抗弁書・弁護士・消費者センター案件）を管理するシステム。Next.js 14 + Google Sheets API v4 で、スプレッドシートをDBとしたCRUD Webアプリを構築しました。\n\n21項目を9項目に厳選する業務設計から始め、ステータスは5段階（未対応/対応中/先方待ち/要対応/完了）に設計。「一目で次のアクションが分かる」を原則にし、2列読ませる設計（ステータス+保留理由）を排除しました。\n\n認証は当初サービスアカウント方式で設計しましたが、Google Workspaceの組織ポリシー（iam.disableServiceAccountKeyCreation）でブロックされたため、OAuth2（NextAuth.js）に全面変更。結果的にユーザー識別も可能になり改善につながりました。\n\nインライン編集は楽観的更新パターンで、UIを即座に反映しAPI失敗時にロールバック。GASのonEditで双方向自動移動（ステータス変更・種別変更）を実装しています。',
+          'ToC向けオンラインスクールの顧客対応（抗弁書・弁護士・消費者センター案件）を管理するシステム。Next.js 14 + Google Sheets API v4 で、スプレッドシートをDBとしたCRUD Webアプリを構築しました。\n\n21項目を9項目に厳選する業務設計から始め、ステータスは5段階（未対応/対応中/先方待ち/要対応/完了）に設計。「一目で次のアクションが分かる」を原則にし、2列読ませる設計（ステータス+保留理由）を排除しました。\n\n認証は当初サービスアカウント方式で設計しましたが、Google Workspaceの組織ポリシー（iam.disableServiceAccountKeyCreation）でブロックされたため、OAuth2（NextAuth.js）に全面変更。結果的にユーザー識別も可能になり改善につながりました。\n\nインライン編集は楽観的更新パターンで、UIを即座に反映しAPI失敗時にロールバック。GASのonEditで双方向自動移動（ステータス変更・種別変更）を実装。Phase 10まで継続的に改善し、複数種別のカンマ区切り対応、完了日自動記録、行削除、スレッドリンク編集、赤伝期日の自動計算（受付日+30日）、受付日・完了日ソートなど9機能を追加。現在16列（A〜P）管理のシステムに成長しています。',
         tags: [
           "Next.js 14 (App Router)",
           "TypeScript",
           "Tailwind CSS + shadcn/ui",
           "Google Sheets API v4",
           "NextAuth.js (OAuth2)",
-          "GAS onEdit (双方向)",
+          "GAS onEdit v2.1 (双方向)",
           "楽観的更新",
-          "レスポンシブ",
-          "キーボードショートカット",
+          "16列CRUD",
+          "複数種別対応",
         ],
         stack:
-          "Next.js 14 · TypeScript · Tailwind CSS · shadcn/ui · Google Sheets API v4 · NextAuth.js (OAuth2) · Vercel",
+          "Next.js 14 · TypeScript · Tailwind CSS · shadcn/ui · Google Sheets API v4 · NextAuth.js (OAuth2) · GAS (onEdit v2.1) · Vercel",
         decisions: [
           {
             title: "認証方式",
@@ -60,9 +60,9 @@ export const content = {
               "1シート → チーム要望で3シート分割。ウェブアプリには「すべて」タブで統合ビューを追加し、両方のニーズに対応。",
           },
           {
-            title: "改善サイクル",
+            title: "継続的改善",
             detail:
-              "v1リリース後にチームFBでv2改修（3シート分割+ステータス再設計）、さらにUI品質改善21項目を実施。",
+              "Phase 10まで段階的に拡張。9項目→14列→16列と、チーム要望に応じて機能追加。カンマ区切り種別対応・赤伝期日自動計算・ソート等、実運用から生まれた改善。",
           },
         ],
       },
@@ -130,46 +130,51 @@ export const content = {
       screenshot: "/screenshots/project3.png",
       easy: {
         description:
-          "チームの日々のタスクをスマホ・PCからサクサク管理できるアプリです。\n\nスプレッドシートでタスク管理をしていたのですが、スマホから見づらく「今日何をやるか」がすぐにわからない状態でした。そこでスプレッドシートと連動する専用アプリを作り、6つのタブ（今日/タスク一覧/アイデア/知識リンク/構成/履歴）で情報を整理しました。\n\nスワイプで完了・削除ができるスマホ最適化UIで、タッチドラッグで並び替えも可能です。毎日0時にマスタータスクから自動投入されるので、毎朝のタスク設定も不要。完了したタスクは取り消し線で一日中残り、0時に自動で履歴に移動します。",
+          "チームの日々のタスクをスマホ・PCからサクサク管理できるアプリです。\n\n当初はGoogleスプレッドシートで管理していましたが、スマホから見づらく「今日何をやるか」がすぐにわからない状態でした。そこで専用アプリを開発し、さらにスプレッドシートからデータベース（Supabase）に移行して本格的なシステムに進化させました。\n\n6つのタブ（今日/タスク一覧/アイデア/知識リンク/構成/履歴）で情報を整理。スワイプで完了・削除、タッチドラッグで並び替えが可能です。毎日0時にVercel Cronで自動リセットされるので、毎朝のタスク設定は不要。マスタータスクの完了状態も自動同期されます。",
         tags: [
           "6タブ構成",
           "スワイプ操作",
           "自動リセット",
-          "完了履歴",
+          "DB移行済み",
           "スマホ最適化",
-          "スプシ連動",
+          "ログイン認証",
         ],
       },
       tech: {
         description:
-          "GAS Web AppでSPA（シングルページアプリ）を構築。スプレッドシート4シートをバックエンドDBとして活用し、google.script.runでCRUD操作を実現しています。\n\n階層表示はhideStackベースの多階層開閉で、全角スペースインデントによるマスター管理とcollapsedRowsによる行番号管理を組み合わせています。親タスク判定は次タスクのindent比較で行い、フレームワークなしのバニラHTML+JSでSPA動作を実装しました。\n\nGAS onEditトリガーで完了時刻・作業中時刻を自動記録。setupDailyTriggerで毎日0時にautoResetAndPopulateを実行し、マスターからの自動投入と完了タスクの履歴移動を行います。md同期機能（TASKS.md/IDEAS.md/KNOWLEDGE.md）でClaude Codeとの連携も実現しています。",
+          "当初GAS Web App + Googleスプレッドシート4シートで構築したSPAを、Supabase（PostgreSQL + RLS）+ Vercel構成にフルマイグレーションしました。\n\nSupabaseに4テーブル（tasks, daily_tasks, completed_tasks, settings）を設計し、全テーブルにRLS（Row Level Security）を適用。認証はSupabase Auth（メール+パスワード）に移行しました。\n\n移行時はgoogle.script.run互換のGASRunnerシムを設計し、既存の17関数をSupabase REST APIにマッピング。フロントエンドのコード変更を最小限に抑えつつ、バックエンドを完全に置き換えています。\n\n日次リセットはVercel Cron Job（毎日0:00 JST）がdaily_reset() SQL関数（SECURITY DEFINER）を実行する構成。完了タスクの履歴移動・繰り返しタスクの再投入・マスターの完了状態同期を自動処理します。",
         tags: [
-          "GAS Web App (doGet)",
+          "Supabase (PostgreSQL + RLS)",
+          "Supabase Auth",
+          "Vercel (Hosting + Cron)",
           "HTML SPA (6タブ)",
-          "google.script.run CRUD",
-          "onEdit トリガー",
-          "hideStack多階層開閉",
-          "setupDailyTrigger",
-          "md同期 (Claude連携)",
-          "タッチドラッグ並替",
+          "GASRunner互換シム",
+          "daily_reset() SQL関数",
+          "REST API CRUD",
+          "GitHub CI/CD",
         ],
         stack:
-          "GAS Web App · Google Sheets (4シート) · GAS onEdit · バニラ HTML/CSS/JS SPA",
+          "Supabase (PostgreSQL + RLS + Auth) · Vercel (Hosting + Cron) · GitHub · バニラ HTML/CSS/JS SPA",
         decisions: [
           {
-            title: "フレームワーク不使用",
+            title: "GASRunner互換シム",
             detail:
-              "GAS Web App内でのReact/Vue導入は複雑化するため、バニラHTML+JSでSPA実装。軽量で読み込み速度を重視。",
+              "google.script.runの全17関数をSupabase REST APIにマッピングする互換レイヤーを設計。フロントエンド側の変更を最小限に抑えてバックエンド移行を実現。",
           },
           {
-            title: "階層管理",
+            title: "RLS設計",
             detail:
-              "全角スペースインデントでマスター管理、hideStackで開閉制御。シンプルだが柔軟な階層表現。",
+              "全4テーブルにRow Level Securityを適用。認証ユーザーのみアクセス可能にし、GASのSession.getActiveUser()相当のセキュリティを確保。",
           },
           {
-            title: "完了タスクの日中残留",
+            title: "Cron Job設計",
             detail:
-              "取り消し線表示で「今日やったこと」を可視化。0時バッチで履歴移動し翌日はクリーンな状態に。",
+              "Vercel Cron + SECURITY DEFINER SQL関数の構成。Deployment Protection有効時にCronがブロックされる問題を特定・解決した実績あり。",
+          },
+          {
+            title: "段階的移行",
+            detail:
+              "GAS Web App → Supabase+Vercelへの移行。データ移行（136タスク+16日次タスク）もREST API経由でバッチ実施。",
           },
         ],
       },
@@ -252,9 +257,22 @@ export const content = {
           description: "ブラウザで見れる管理画面を無料で作る",
         },
         tech: {
-          title: "GAS Web App",
+          title: "GAS Web App / Supabase",
           description:
-            "doGet + React SPA。Session.getActiveUser()認証",
+            "doGet + SPA、またはSupabase + Vercel構成に対応",
+        },
+      },
+      {
+        icon: "Database",
+        easy: {
+          title: "DB移行・構築",
+          description:
+            "スプレッドシートからデータベースへの移行も対応",
+        },
+        tech: {
+          title: "Supabase (PostgreSQL)",
+          description:
+            "RLS + Auth + Vercel Cron。GAS互換シムで段階的移行",
         },
       },
       {

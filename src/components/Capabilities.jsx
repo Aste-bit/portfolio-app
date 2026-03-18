@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import {
   Monitor,
   LayoutDashboard,
+  Database,
   Download,
   Bell,
   RefreshCw,
@@ -14,6 +15,7 @@ import { content } from "../data/content";
 const iconMap = {
   Monitor,
   LayoutDashboard,
+  Database,
   Download,
   Bell,
   RefreshCw,
