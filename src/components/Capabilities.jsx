@@ -8,6 +8,7 @@ import {
   RefreshCw,
   Search,
   Wifi,
+  Bot,
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./FadeIn";
 import { content } from "../data/content";
@@ -21,6 +22,7 @@ const iconMap = {
   RefreshCw,
   Search,
   Wifi,
+  Bot,
 };
 
 export function Capabilities({ isTech }) {
