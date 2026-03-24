@@ -230,6 +230,63 @@ export const content = {
         ],
       },
     },
+    {
+      number: "05",
+      title: "Cortex — AIエージェント自動化基盤",
+      service: "",
+      screenshot: "/screenshots/project5.png",
+      easy: {
+        description:
+          "Discord上で指示を出すだけで、コード修正・Git push・SNS投稿・データベース修復などを自律的に実行してくれるAIボットシステムです。\n\n「@Cortex バグ直して」と送るだけで、コードの修正からGit push、Vercelへの自動デプロイまで一貫して実行。SNS投稿も5つのAIエージェント（分析→戦略→執筆→投稿→評価）が連携して自動で行います。\n\nデータベースのエラーを自動検出・修復する「自己修復機能」や、放置タスクを検出して対応を促す「コーチングモード」も搭載。スマホのDiscordから指示するだけで、PCで自動実行→結果がDiscordに返ってきます。",
+        tags: [
+          "Discord AIボット",
+          "5エージェントSNS自動化",
+          "自己修復機能",
+          "コーチングモード",
+          "スマホから遠隔実行",
+          "全マイルストーン完了",
+        ],
+      },
+      tech: {
+        description:
+          "Discord Bot + Claude Codeエージェントで構築したAI自動化基盤。Discordチャットで自然言語指示→Claude Codeがコード修正・Shell実行・Git push→Vercel自動デプロイのパイプラインを実現しています。\n\nコアインフラはcortex-api.sh（540+行）で、Supabase REST APIとの通信・認証・エラーハンドリング・自動リトライ・REST fallbackを担当。cortex-doctor.shがDDL（テーブル定義）の自動検証・修復を行い、欠損カラム・テーブルを自動復旧します。\n\nSNS Autopilot v2は5エージェント構成（Analyst→Strategist→Writer→Publisher→Scorer）で、sns-brain.shがオーケストレーション・エージェント間データ受け渡し・Supabase永続化を管理。Coaching Modeはセッション開始時にai/humanタイプ別ブロッカーを自動検出・対応促進します。\n\nbash vs Pythonの選択ではClaude Codeとの親和性を重視しbashを採用。macOS互換性問題（head -n -1 → sed '$d'のBSD/GNU差異）の発見・修正も実施。",
+        tags: [
+          "Discord Bot (discord.js)",
+          "Claude Code Agent",
+          "Bash 540+行 (cortex-api.sh)",
+          "Supabase 9テーブル + 9 RPC",
+          "X API v2",
+          "5エージェント連携",
+          "DDL自動修復 (cortex-doctor.sh)",
+          "Coaching Mode",
+          "macOS BSD互換対応",
+        ],
+        stack:
+          "Discord Bot · Claude Code Agent · Bash · Supabase (PostgreSQL + RLS) · X API v2 · Vercel · GitHub",
+        decisions: [
+          {
+            title: "bash vs Python",
+            detail:
+              "Claude Codeとの親和性を重視しbashを選択。シェルコマンド直接実行が可能で、540+行でも構造化設計で可読性を担保。",
+          },
+          {
+            title: "REST API直接",
+            detail:
+              "Supabase JS SDKではなくcurl + REST APIを選択。Claude Code環境でNode.jsランタイム不要。エラー時のfallback設計も容易。",
+          },
+          {
+            title: "5エージェント分離",
+            detail:
+              "SNS自動化を単一処理ではなく5エージェントに分離。各エージェントの責務を明確化し、一方向パイプラインで品質を担保。",
+          },
+          {
+            title: "自己修復アーキテクチャ",
+            detail:
+              "cortex-doctor.shでDDL自動検証。テーブル/カラム欠損時にCREATE/ALTER文を自動生成・実行。人間の介入なしで復旧可能。",
+          },
+        ],
+      },
+    },
   ],
 
   capabilities: {
@@ -334,6 +391,19 @@ export const content = {
           title: "PWA (Service Worker)",
           description:
             "Service Worker + localStorage。CDN依存なしでオフライン完全対応",
+        },
+      },
+    ],
+      {
+        icon: "Bot",
+        easy: {
+          title: "AIエージェント構築",
+          description: "チャットで指示するだけで自律動作するAIボット",
+        },
+        tech: {
+          title: "Discord Bot + Claude Code",
+          description:
+            "自然言語指示→自律タスク実行。マルチエージェント・自己修復対応",
         },
       },
     ],
