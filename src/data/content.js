@@ -393,7 +393,6 @@ export const content = {
             "Service Worker + localStorage。CDN依存なしでオフライン完全対応",
         },
       },
-    ],
       {
         icon: "Bot",
         easy: {
