@@ -237,29 +237,29 @@ export const content = {
       screenshot: "/screenshots/project5.png",
       easy: {
         description:
-          "Discord上で指示を出すだけで、コード修正・Git push・SNS投稿・データベース修復などを自律的に実行してくれるAIボットシステムです。\n\n「@Cortex バグ直して」と送るだけで、コードの修正からGit push、Vercelへの自動デプロイまで一貫して実行。SNS投稿も5つのAIエージェント（分析→戦略→執筆→投稿→評価）が連携して自動で行います。\n\nデータベースのエラーを自動検出・修復する「自己修復機能」や、放置タスクを検出して対応を促す「コーチングモード」も搭載。スマホのDiscordから指示するだけで、PCで自動実行→結果がDiscordに返ってきます。",
+          "Discord上で指示を出すだけで、コード修正・Git push・SNS投稿・データベース修復などを自律的に実行してくれるAIボットシステムです。\n\n「@Cortex バグ直して」と送るだけで、コードの修正からGit push、Vercelへの自動デプロイまで一貫して実行。SNS投稿は5つのAIエージェントが連携し、v3では過去100投稿との類似度チェック・15種類のテンプレート自動ローテーション・バズ投稿の検出と派生投稿の自動生成まで行います。\n\nデータベースのエラーを自動検出・修復する「自己修復機能」や、放置タスクを検出して対応を促す「コーチングモード」も搭載。スマホのDiscordから指示するだけで、PCで自動実行→結果がDiscordに返ってきます。",
         tags: [
           "Discord AIボット",
-          "5エージェントSNS自動化",
+          "SNS Autopilot v3",
+          "15テンプレ自動ローテーション",
+          "バズ検出→派生投稿",
           "自己修復機能",
           "コーチングモード",
-          "スマホから遠隔実行",
-          "全マイルストーン完了",
         ],
       },
       tech: {
         description:
-          "Discord Bot + Claude Codeエージェントで構築したAI自動化基盤。Discordチャットで自然言語指示→Claude Codeがコード修正・Shell実行・Git push→Vercel自動デプロイのパイプラインを実現しています。\n\nコアインフラはcortex-api.sh（540+行）で、Supabase REST APIとの通信・認証・エラーハンドリング・自動リトライ・REST fallbackを担当。cortex-doctor.shがDDL（テーブル定義）の自動検証・修復を行い、欠損カラム・テーブルを自動復旧します。\n\nSNS Autopilot v2は5エージェント構成（Analyst→Strategist→Writer→Publisher→Scorer）で、sns-brain.shがオーケストレーション・エージェント間データ受け渡し・Supabase永続化を管理。Coaching Modeはセッション開始時にai/humanタイプ別ブロッカーを自動検出・対応促進します。\n\nbash vs Pythonの選択ではClaude Codeとの親和性を重視しbashを採用。macOS互換性問題（head -n -1 → sed '$d'のBSD/GNU差異）の発見・修正も実施。",
+          "Discord Bot + Claude Codeエージェントで構築したAI自動化基盤。Discordチャットで自然言語指示→Claude Codeがコード修正・Shell実行・Git push→Vercel自動デプロイのパイプラインを実現しています。\n\nコアインフラはcortex-api.sh（540+行）で、Supabase REST APIとの通信・認証・エラーハンドリング・自動リトライ・REST fallbackを担当。cortex-doctor.shがDDL（テーブル定義）の自動検証・修復を行い、欠損カラム・テーブルを自動復旧します。\n\nSNS Autopilot v3は5エージェント構成（Analyst→Strategist→Writer→Publisher→Scorer）。v3で追加した5つの品質保証機能: (1)バイグラム類似度による過去100投稿との重複チェック（0.85閾値）、(2)15テンプレートの強制ローテーション（直近3投稿と重複不可）、(3)40+パターンの1行目フックライブラリ、(4)バズピボット（平均×2倍のバズ→派生3投稿自動生成）、(5)品質ゲート強化（閾値未達→2回リライト→自動破棄）。\n\nbash vs Pythonの選択ではClaude Codeとの親和性を重視しbashを採用。macOS互換性問題（head -n -1 → sed '$d'のBSD/GNU差異）の発見・修正も実施。",
         tags: [
           "Discord Bot (discord.js)",
           "Claude Code Agent",
           "Bash 540+行 (cortex-api.sh)",
           "Supabase 9テーブル + 9 RPC",
-          "X API v2",
-          "5エージェント連携",
+          "SNS Autopilot v3",
+          "類似度チェック + バズピボット",
           "DDL自動修復 (cortex-doctor.sh)",
           "Coaching Mode",
-          "macOS BSD互換対応",
+          "15テンプレート自動ローテーション",
         ],
         stack:
           "Discord Bot · Claude Code Agent · Bash · Supabase (PostgreSQL + RLS) · X API v2 · Vercel · GitHub",
