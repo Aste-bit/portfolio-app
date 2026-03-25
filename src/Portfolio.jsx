@@ -7,6 +7,7 @@ import { Project } from "./components/Project";
 import { Capabilities } from "./components/Capabilities";
 import { Process } from "./components/Process";
 import { Footer } from "./components/Footer";
+import { WaveDivider } from "./components/Animations";
 
 export default function Portfolio() {
   const { theme, toggleTheme } = useTheme();
@@ -28,7 +29,9 @@ export default function Portfolio() {
           <Project key={i} project={project} isTech={isTech} />
         ))}
 
+        <WaveDivider className="my-4" />
         <Capabilities isTech={isTech} />
+        <WaveDivider className="my-4" />
         <Process isTech={isTech} />
       </main>
 

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./FadeIn";
 import { content } from "../data/content";
+import { Marquee } from "./Animations";
 
 const iconMap = {
   Monitor,
@@ -49,7 +50,14 @@ export function Capabilities({ isTech }) {
           const data = isTech ? card.tech : card.easy;
           return (
             <StaggerItem key={i}>
-              <div className="group p-5 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 hover:border-stone-300 dark:hover:border-stone-600 hover:shadow-md transition-all duration-200">
+              <motion.div
+                className="group p-5 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 hover:border-stone-300 dark:hover:border-stone-600 transition-all duration-200"
+                whileHover={{
+                  y: -4,
+                  boxShadow: "0 8px 25px -5px rgba(0,0,0,0.08)",
+                  transition: { type: "spring", stiffness: 300, damping: 20 },
+                }}
+              >
                 <Icon
                   size={20}
                   className="text-stone-400 dark:text-stone-500 mb-3"
@@ -67,11 +75,23 @@ export function Capabilities({ isTech }) {
                     {data.description}
                   </p>
                 </motion.div>
-              </div>
+              </motion.div>
             </StaggerItem>
           );
         })}
       </StaggerContainer>
+
+      {/* Tech stack marquee */}
+      <FadeIn className="mt-10">
+        <Marquee
+          items={[
+            "Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase",
+            "Google Sheets API", "GAS", "Vercel", "Discord Bot", "Claude Code",
+            "PostgreSQL", "OAuth2", "Service Worker", "Chrome Extension",
+          ]}
+          speed={25}
+        />
+      </FadeIn>
 
       {/* Extra text */}
       <FadeIn className="mt-10">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn } from "./FadeIn";
 import { Accordion } from "./Accordion";
+import { SquishCard } from "./Animations";
 
 function Screenshot({ src, alt }) {
   const [hasError, setHasError] = useState(false);
@@ -50,10 +51,18 @@ export function Project({ project, isTech }) {
           {project.service}
         </p>
 
-        {/* Screenshot */}
-        <div className="mt-8">
-          <Screenshot src={project.screenshot} alt={project.title} />
-        </div>
+        {/* Screenshot with reveal animation */}
+        <motion.div
+          className="mt-8"
+          initial={{ clipPath: "inset(0 100% 0 0)" }}
+          whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <SquishCard>
+            <Screenshot src={project.screenshot} alt={project.title} />
+          </SquishCard>
+        </motion.div>
 
         {/* Description */}
         <motion.div
