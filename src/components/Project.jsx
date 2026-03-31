@@ -7,10 +7,11 @@ import { SquishCard } from "./Animations";
 function Screenshot({ src, alt }) {
   const [hasError, setHasError] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const noImage = !src || hasError;
 
   return (
     <div className="aspect-video rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shadow-sm">
-      {!hasError && (
+      {!noImage && (
         <img
           src={src}
           alt={alt}
@@ -21,13 +22,18 @@ function Screenshot({ src, alt }) {
           }`}
         />
       )}
-      {(hasError || !loaded) && (
+      {(noImage || !loaded) && (
         <div
-          className={`w-full h-full flex items-center justify-center text-stone-400 dark:text-stone-500 text-sm ${
-            loaded ? "hidden" : ""
+          className={`w-full h-full flex flex-col items-center justify-center gap-2 ${
+            loaded && !noImage ? "hidden" : ""
           }`}
         >
-          Screenshot
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-stone-300 dark:text-stone-600">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span className="text-xs font-medium tracking-wide text-stone-400 dark:text-stone-500 uppercase">Image not available</span>
         </div>
       )}
     </div>
